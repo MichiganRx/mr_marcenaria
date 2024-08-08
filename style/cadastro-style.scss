@@ -4,17 +4,17 @@
   }
 }
 
-.cadastro-produto{
+.modal-cad{
   align-items: center;
   justify-content: center;
   position: absolute;
   top: 0;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   background-color: var(--color-primary-dark-opacity);
   display: none;
   left: 0;
-  z-index: 10;
+  z-index: 300;
   overflow: hidden;
 
   & form{
@@ -30,6 +30,12 @@
     animation: zoomIn 0.5s both;
     margin-left: 80px;
 
+    @media (max-width: 600px) {
+      width: 80%;
+      margin-left: 0;
+      padding: 20px 10px;
+    } 
+
     .titulo-add{
       display: flex;
       align-items: center;
@@ -37,10 +43,19 @@
       width: 100%;
       margin-bottom: 10px;
 
+      @media (max-width: 600px) {
+        margin-bottom: 0;
+        padding: 0 10px;
+      } 
+
       & h3{
         font-size: 22px;
         color: var(--color-neutral-mid);
         font-weight: 600;
+
+        @media (max-width: 600px) {
+          font-size: 18px;
+        } 
       }
 
       & img{
@@ -60,7 +75,7 @@
     }
 
     & > button {
-      width: 80%;
+      width: 150px;
       padding: 5px 0;
       border-radius: 20px;
       background: linear-gradient(270deg, #775c4c, #b37c5c);
@@ -71,11 +86,13 @@
 
       &:hover {
           background: linear-gradient(270deg, #b37c5c,  #775c4c);
-      }
-
+      } 
+      
       @media (max-width: 600px) {
-          padding: 6px 0;
-      }  
+        width: 40%;
+        padding: 7px 10px;  
+        min-width: 120px;    
+      }
     }
   }
 }
@@ -84,7 +101,12 @@
   display: flex;
   width: 100vw;
   height: 100vh;
-  min-height: fit-content;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+  }
 }
 
 .container_form{
@@ -93,18 +115,29 @@
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 60px;
 
-  & h2{
-    font-size: 24px;
-    color: var(--color-neutral-mid);
-    font-weight: 600;
+  @media (max-width: 600px) {
+    padding: 40px 20px;
+    height: fit-content;
   }
 
   & form{
     display: flex;
+    align-items: center;
     flex-direction: column;
+    justify-content: space-between;
     width: 100%;
-    height: 81%;
+    height: 100%;
+    max-width: 500px;
+    background-color: var(--color-mid-dark);
+    border: 2px solid var(--color-border);
+    border-radius: 20px;
+    padding: 40px 20px;
+
+    @media (max-width: 600px) {
+      max-width: 100%;
+    }
 
     & input{
       background: transparent;
@@ -118,26 +151,15 @@
   }
 }
 
-.content{
+.container-content{
   display: flex;
+  width: 100%;
   flex-direction: column;
-  align-items: center;
   gap: 40px;
-  height: 100%;
-}
 
-.card, .spinner{
-  margin-left: 80px;
-}
-
-.content-table{
-  width: 480px;
-  height: 85%;
-  background-color: var(--color-mid-dark);
-  border: 2px solid var(--color-border);
-  padding: 20px;
-  padding-top: 0;
-  border-radius: 20px;
+  @media (max-width: 600px) {
+    gap: 20px;
+  }
 }
 
 .title-table{
@@ -145,13 +167,20 @@
   align-items: center;
   justify-content: space-between;
   background-color: var(--color-mid-dark);
+  gap: 10px;
   padding: 0 10px;
-  height: 15%;
-  min-height: 80px;
-  position: sticky;
-  top: 0px;
-  z-index: 1;
-  gap: 20px;
+  margin-bottom: 10px;
+
+  & h2{
+    font-size: 24px;
+    color: var(--color-neutral-mid);
+    font-weight: 600;
+
+    @media (max-width: 600px) {
+      font-size: 18px;
+      margin-top: 5px;
+    }
+  }
 
   & button{
     display: flex;
@@ -164,36 +193,41 @@
     font-weight: 600;
     font-size: 14px;
 
+    @media (max-width: 600px) {
+      font-size: 12px;
+      position: absolute;
+      right: 30px;
+      margin-top: -60px;
+    }
+
     & img{
       width: 25px;
       height: 25px;
+
+      @media (max-width: 600px) {
+        width: 18px;
+        height: 18px;
+      }
     }
   }
 }
 
-.container-button{
-  width: 100%;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.button-save {
+  width: 40%;
+  min-width: 100PX;    
+  padding: 7px 10px;
+  border-radius: 20px;
+  background: linear-gradient(270deg, #775c4c, #b37c5c);
+  color: var(--primary-ligth);
+  font-size: clamp(14px, 3vw, 16px);
+  transition: 0.3s;
+  margin-top: 30px;
 
-  & > button {
-    width: 40%;
-    padding: 7px 10px;
-    border-radius: 20px;
-    background: linear-gradient(270deg, #775c4c, #b37c5c);
-    color: var(--primary-ligth);
-    font-size: clamp(14px, 3vw, 16px);
-    transition: 0.3s;
-    margin-top: 10px;
+  &:hover {
+      background: linear-gradient(270deg, #b37c5c,  #775c4c);
+  } 
 
-    &:hover {
-        background: linear-gradient(270deg, #b37c5c,  #775c4c);
-    }
-
-    @media (max-width: 600px) {
-        padding: 6px 0;
-    }  
+  @media (max-width: 600px) {
+    margin-top: 30px;
   }
 }
