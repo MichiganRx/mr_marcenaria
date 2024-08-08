@@ -12,31 +12,26 @@ session_start();
         
         <title>Recuperação de Senha</title>
     </head>
-    <body>
-        <main>
-            <section class="container">
+    <body class="container">
+        <div>
+            <form id="passwordForm" action="./autentica.php" method="POST" enctype="multipart/form-data">
                 <div>
-                    <form id="passwordForm" action="./autentica.php" method="POST" enctype="multipart/form-data">
-                        <div>
-                            <img src="./assets/img/logo.png" alt="">
-                            <span>Nova Senha</span>
-                            <div class="container-input">
-                                <input type="password" name="novaSenha" id="novaSenha" placeholder="Senha" required>
-                                <button type="button" id="togglePassword">
-                                    <img src="./assets/img/olho-aberto.png" alt="" id="olho-1">
-                                </button>
-                            </div>
-                            <span>Repetir Senha</span>
-                            <input type="password" name="repetirSenha" id="repetirSenha" placeholder="Repetir Senha" required>
-                            <span id="error-message" class="error-message">As senhas não coincidem!</span>
-                            <button type="submit" name="autentica">Salvar</button>
-                            <a href="./index.php" class="esqueceu-senha"><img src="./assets/img/voltar.png" alt=""><b>Voltar</b></a>
-                        </div>
-                    </form>
+                    <img src="./assets/img/logo.png" alt="">
+                    <span>Nova Senha</span>
+                    <div class="container-input">
+                        <input type="password" name="novaSenha" id="novaSenha" placeholder="Senha" required>
+                        <button type="button" id="togglePassword">
+                            <img src="./assets/img/olho-aberto.png" alt="" id="olho-1">
+                        </button>
+                    </div>
+                    <span>Repetir Senha</span>
+                    <input type="password" name="repetirSenha" id="repetirSenha" placeholder="Repetir Senha" required>
+                    <span id="error-message" class="error-message">As senhas não coincidem!</span>
+                    <button type="submit" name="autentica">Salvar</button>
+                    <a href="./index.php" class="esqueceu-senha"><img src="./assets/img/voltar.png" alt=""><b>Voltar</b></a>
                 </div>
-            </section>
-        </main>
-
+            </form>
+        </div>
         <script>
             document.getElementById('passwordForm').addEventListener('submit', function(event) {
                 var novaSenha = document.getElementById('novaSenha').value;

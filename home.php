@@ -12,8 +12,13 @@ if (isset($_SESSION['username'])) {
         $result = $produto->listar_produtos();
     }
     
-    $totalProdutos = $result->num_rows;
-    $produtosPorPagina = 15;
+    $produtos = [];
+    while ($linha = $result->fetch_array()) {
+        $produtos[] = $linha;
+    }
+    
+    $totalProdutos = count($produtos);
+    $produtosPorPagina = 12;
     $totalPaginas = max(1, ceil($totalProdutos / $produtosPorPagina));
 ?>
 
@@ -25,13 +30,21 @@ if (isset($_SESSION['username'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="./side-bar/style.scss" rel="stylesheet">
     <link href="./style/global.scss" rel="stylesheet">
-    <link href="./style/lista-de-compra.scss" rel="stylesheet">
+    <link href="./style/table-style.scss" rel="stylesheet">
+    <link href="./style/table-responsive.scss" rel="stylesheet">
     <link href="./style/select-personalizado.scss" rel="stylesheet">
+    <link href="./style/modal-cad-style.scss" rel="stylesheet">
+    <link href="./side-bar/style-responsive.scss" rel="stylesheet">
     <title>Home</title>
 </head>
 <body>
     <main class="container">
         <?php require_once './side-bar/menu.php'; ?>
+        <header>
+            <div class="navbar">
+                <?php require_once './side-bar/menu-responsive.php'; ?>
+            </div>
+        </header>
         <div class="table">
             <div class="content-table">
                 <div class="title-table">
@@ -59,7 +72,7 @@ if (isset($_SESSION['username'])) {
                             </tr>
                         </thead>
                         <tbody>
-                            <?php while ($linha = $result->fetch_array()) { ?>
+                            <?php foreach ($produtos as $linha) { ?>
                                 <tr class="line-table">
                                     <td><?= htmlspecialchars($linha['nomeproduto']) ?></td>
                                     <td><?= htmlspecialchars($linha['saldo']) ?></td>
@@ -95,6 +108,54 @@ if (isset($_SESSION['username'])) {
                         </tbody>
                     </table>
                 </div>
+                <div class="container-table-responsive">
+                    <?php 
+                    $isBg = true;
+                    foreach ($produtos as $linha) { 
+                        $rowClass = $isBg ? 'true-background' : '';
+                        $isBg = !$isBg;
+                    ?>
+                        <div class="container-content <?= $rowClass ?>">
+                            <div class="line-title">
+                                <div>
+                                    <h1>Produto:</h1>
+                                    <span><?= htmlspecialchars($linha['nomeproduto']) ?></span>
+                                </div>
+                                <div>
+                                    <button type="button" class="btnEdita" 
+                                        data-id="<?= htmlspecialchars($linha['idproduto']) ?>"
+                                        data-nome="<?= htmlspecialchars($linha['nomeproduto']) ?>"
+                                        data-saldo="<?= htmlspecialchars($linha['saldo']) ?>"
+                                        data-minimo="<?= htmlspecialchars($linha['quantidade_minima']) ?>"
+                                        data-fornecedor="<?= htmlspecialchars($linha['idfornecedor']) ?>"
+                                        data-estoque="<?= htmlspecialchars($linha['idestoque']) ?>">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </button>
+                                    <a href="#" onclick="return confirmarExclusao('<?= htmlspecialchars($linha['nomeproduto']) ?>', './apagar_produto.php?idproduto=<?= htmlspecialchars($linha['idproduto']) ?>&nome=<?= htmlspecialchars($linha['nomeproduto']) ?>&redirect=home')">
+                                        <i class="bi bi-trash3"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div>
+                                    <h3>Saldo:</h3>
+                                    <span><?= htmlspecialchars($linha['saldo']) ?></span>
+                                </div>
+                                <div>
+                                    <?php
+                                        if ($linha['saldo'] == 0) {
+                                            echo '<img src="./assets/img/fora-estoque.png" alt="Fora do Estoque">';
+                                        } elseif ($linha['saldo'] < $linha['quantidade_minima']) {
+                                            echo '<img src="./assets/img/alerta.png" alt="Em Alerta">';
+                                        } else {
+                                            echo '<img src="./assets/img/ok.png" alt="Em Estoque">';
+                                        }
+                                    ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php } ?>
+                </div>
                 <div class="pagination">
                     <span id="pageIndicator">Página 1 de <?= $totalPaginas ?></span>
                     <button id="prevPage" onclick="changePage(currentPage - 1)" disabled><i class="bi bi-caret-left-fill"></i></button>
@@ -102,7 +163,7 @@ if (isset($_SESSION['username'])) {
                 </div>
             </div>
         </div>
-        <div class="cadastro-produto" id="cadastroProduto">
+        <div class="modal-cad" id="cadastroProduto">
             <form id="cadastroProdutoForm" action="./cad_produto.php" method="POST" enctype="multipart/form-data">
                 <div class="titulo-add">
                     <h3>Cadastrar Produto</h3>
@@ -141,7 +202,7 @@ if (isset($_SESSION['username'])) {
                 <button type="submit" name="salva_produto">Cadastrar</button>
             </form>
         </div>
-        <div class="cadastro-produto" id="editarProduto">
+        <div class="modal-cad" id="editarProduto">
             <form action="./produto_edita.php" method="POST" enctype="multipart/form-data" id="editarProdutoForm">
                 <div class="titulo-add">
                     <h3>Editar Produto</h3>
@@ -183,30 +244,46 @@ if (isset($_SESSION['username'])) {
         </div>
         <div id="app"></div>
         <div id="appDelet"></div>
-    </main>
     <?php require_once './rodape.php'; ?>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        const produtosPorPagina = 12;
+        const totalPaginas = <?= $totalPaginas ?>;
         let currentPage = 1;
-        const totalPages = <?= $totalPaginas ?>;
-        const produtosPorPagina = <?= $produtosPorPagina ?>;
 
         function changePage(page) {
-            if (page < 1 || page > totalPages) return;
-
+            if (page < 1 || page > totalPaginas) return;
+            
             currentPage = page;
-            const rows = document.querySelectorAll('.line-table');
-            const startIndex = (currentPage - 1) * produtosPorPagina;
-            const endIndex = startIndex + produtosPorPagina;
+            const start = (currentPage - 1) * produtosPorPagina;
+            const end = start + produtosPorPagina;
 
-            rows.forEach((row, index) => {
-                row.style.display = (index >= startIndex && index < endIndex) ? 'table-row' : 'none';
+            const linhasTabela = document.querySelectorAll('.line-table');
+            const containersResponsivos = document.querySelectorAll('.container-content');
+            
+            linhasTabela.forEach((linha, index) => {
+                linha.style.display = (index >= start && index < end) ? '' : 'none';
             });
 
+            containersResponsivos.forEach((container, index) => {
+                container.style.display = (index >= start && index < end) ? '' : 'none';
+            });
+
+            document.getElementById('pageIndicator').textContent = `Página ${currentPage} de ${totalPaginas}`;
             document.getElementById('prevPage').disabled = currentPage === 1;
-            document.getElementById('nextPage').disabled = currentPage === totalPages;
-            document.getElementById('pageIndicator').textContent = `Página ${currentPage} de ${totalPages}`;
+            document.getElementById('nextPage').disabled = currentPage === totalPaginas;
         }
+
+        document.getElementById('prevPage').addEventListener('click', function () {
+            changePage(currentPage - 1);
+        });
+
+        document.getElementById('nextPage').addEventListener('click', function () {
+            changePage(currentPage + 1);
+        });
+
         changePage(1);
+    });
     </script>
     <script src="./script/script-home.js"></script>
     <script src="./script/alert.js"></script>
