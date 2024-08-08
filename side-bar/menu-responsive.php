@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
 </head>
 <body>
-    <div class="btn-expandir">
         <i class="bi bi-list" id="toggleBtn"></i>
-    </div>
     <div class="bg-menu" id="menu_container">
         <div class="menu" id="menu">
             <img src="./assets/img/logo.png" alt="" class="logo">

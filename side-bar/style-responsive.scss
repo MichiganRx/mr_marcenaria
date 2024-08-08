@@ -2,13 +2,14 @@
 
 header{
     display: none;
+    align-items: center;
     width: 100%;
-    position: fixed;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0px;
     z-index: 100;
     box-shadow: 0 3px 0 var(--color-primary-10);
     background-color: var(--color-dark);
-    padding: 10px 20px;
-    height: 64px;
     
     @media (max-width: 600px) {
         display: flex;
@@ -16,14 +17,14 @@ header{
 }
 
 .logo{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     margin: 20px 0px;
 }
 
-.btn-expandir > i{
+#toggleBtn{
     color: var(--primary-ligth);
-    font-size: 40px;
+    font-size: 35px;
     cursor: pointer;
 }
 
@@ -53,13 +54,6 @@ header{
     z-index: 2;
     box-shadow: 3px 0 0 var(--color-primary-10);
     padding-left: 10px;
-}
-
-#sair{
-    @media (max-width: 600px) {
-        position: absolute;
-        bottom: 0;
-    }
 }
 
 /* --------------------------- ANIMATION ---------------------- */

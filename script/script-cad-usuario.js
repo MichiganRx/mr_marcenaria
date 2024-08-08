@@ -65,11 +65,15 @@ window.onload = function() {
     const openModal = () => {
         document.getElementById('cadastroCargo').style.display = 'flex';
         cargoErrorMessage.style.display = 'none';
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
     };
 
     const closeModal = () => {
         document.getElementById('cadastroCargo').style.display = 'none';
         cargoErrorMessage.style.display = 'none';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
     };
 
     document.getElementById('btnAdicionarCargo').addEventListener('click', openModal);
