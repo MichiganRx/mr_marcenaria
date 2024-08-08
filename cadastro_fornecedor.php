@@ -16,6 +16,7 @@ if (isset($_SESSION['username'])) {
     <link href="./side-bar/style-responsive.scss" rel="stylesheet">
     <link href="./style/global.scss" rel="stylesheet">
     <link href="./style/cadastro-style.scss" rel="stylesheet">
+    <link href="./style/modal-cad-style.scss" rel="stylesheet">
     <link href="./style/select-personalizado.scss" rel="stylesheet">
     <title>Cadastrar Novo Fornedor</title>
 </head>
