@@ -10,7 +10,18 @@ function confirmarExclusao(nomeProduto, url) {
     const modal = card.render();
     modalWrapper.appendChild(modal);
 
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+
     document.body.appendChild(modalWrapper);
+
+    modalWrapper.addEventListener('click', () => {
+        document.body.style.overflow = ''; 
+        document.documentElement.style.overflow = '';
+        if (document.body.contains(modalWrapper)) {
+            document.body.removeChild(modalWrapper);
+        }
+    });
 
     return false;
 }
@@ -80,15 +91,21 @@ window.onload = function() {
 
     btnAdicionarProduto.addEventListener('click', () => {
         cadastroProduto.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        document.documentElement.style.overflow = 'hidden';
     });
 
     btnFecharCadastro.addEventListener('click', () => {
         cadastroProduto.style.display = 'none';
         errorMessage.style.display = 'none';
+        document.body.style.overflow = ''; 
+        document.documentElement.style.overflow = '';
     });
     
     btnFecharEdicao.addEventListener('click', () => {
         editarProduto.style.display = 'none';
+        document.body.style.overflow = ''; 
+        document.documentElement.style.overflow = '';
     });
 
     document.querySelectorAll('.btnEdita').forEach(button => {
@@ -119,6 +136,8 @@ window.onload = function() {
             }
 
             editarProduto.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
         });
     });
 
@@ -135,6 +154,8 @@ window.onload = function() {
         } else {
             errorMessage.style.display = 'none';
             cadastroProduto.style.display = 'none';
+            document.body.style.overflow = ''; 
+            document.documentElement.style.overflow = '';
             const card = new Card('Sucesso!', 'Produto Cadastrado.');
             const app = document.getElementById('app');
             app.appendChild(card.render()); 
@@ -176,9 +197,10 @@ document.getElementById('editarProdutoForm').addEventListener('submit', (event) 
     } else {
         errorMessageEdita.style.display = 'none';
         editarProduto.style.display = 'none';
+        document.body.style.overflow = ''; 
+        document.documentElement.style.overflow = '';
         const card = new Card('Sucesso!', 'Produto Atualizado.');
         const app = document.getElementById('app');
-        app.appendChild(card.render()); 
+        app.appendChild(card.render());
     }
 });
-

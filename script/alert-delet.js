@@ -50,6 +50,8 @@ class CardDelet {
 
         confirmButton.addEventListener('click', () => {
             this.onConfirm();
+            document.body.style.overflow = ''; 
+            document.documentElement.style.overflow = '';
             if (document.body.contains(cardWrapper)) {
                 document.body.removeChild(cardWrapper);
             }
@@ -69,6 +71,8 @@ class CardDelet {
 
         cancelButton.addEventListener('click', () => {
             const modalWrapper = document.querySelector('.modal-wrapper');
+            document.body.style.overflow = ''; 
+            document.documentElement.style.overflow = '';
             if (modalWrapper && document.body.contains(modalWrapper)) {
                 document.body.removeChild(modalWrapper);
             }
@@ -84,6 +88,9 @@ class CardDelet {
         card.appendChild(buttonContainer);
 
         cardWrapper.appendChild(card);
+
+        document.body.style.overflow = 'hidden'; 
+        document.documentElement.style.overflow = 'hidden';
 
         return cardWrapper;
     }
