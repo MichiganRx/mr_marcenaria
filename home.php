@@ -39,12 +39,12 @@ if (isset($_SESSION['username'])) {
 </head>
 <body>
     <main class="container">
-        <?php require_once './side-bar/menu.php'; ?>
         <header>
             <div class="navbar">
                 <?php require_once './side-bar/menu-responsive.php'; ?>
             </div>
         </header>
+        <?php require_once './side-bar/menu.php'; ?>
         <div class="table">
             <div class="content-table">
                 <div class="title-table">
@@ -244,7 +244,6 @@ if (isset($_SESSION['username'])) {
         </div>
         <div id="app"></div>
         <div id="appDelet"></div>
-    <?php require_once './rodape.php'; ?>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const produtosPorPagina = <?= $produtosPorPagina ?>;
