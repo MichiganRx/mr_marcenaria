@@ -33,6 +33,17 @@ class Card {
 
         cardWrapper.appendChild(card);
 
+        document.body.style.overflow = 'hidden'; 
+        document.documentElement.style.overflow = 'hidden';
+
+        cardWrapper.addEventListener('click', () => {
+            document.body.style.overflow = ''; 
+            document.documentElement.style.overflow = '';
+            if (document.body.contains(cardWrapper)) {
+                document.body.removeChild(cardWrapper);
+            }
+        });
+
         return cardWrapper;
     }
 }
