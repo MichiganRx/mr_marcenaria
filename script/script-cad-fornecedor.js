@@ -39,7 +39,7 @@ window.onload = function() {
         if (cargoNome) {
             cargoErrorMessage.style.display = 'none';
         } else {
-            cargoErrorMessage.style.display = 'block';
+            cargoErrorMessage.style.display = 'flex';
         }
     };
 
@@ -50,7 +50,7 @@ window.onload = function() {
 
         if (!cargoNome) {
             event.preventDefault();
-            cargoErrorMessage.style.display = 'block';
+            cargoErrorMessage.style.display = 'flex';
         } else {
             document.getElementById('cadastroTipo').style.display = 'none';
             const card = new Card('Sucesso!', 'Tipo de fornecedor cadastrado.');
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
         var tipo = document.getElementById("tipo_forn").value;
 
         if (nome === "" || tel === "" || tipo === "" ) {
-            document.getElementById("error-message-user").style.display = "block";
+            document.getElementById("error-message-user").style.display = "flex";
             event.preventDefault();
             return;
         }else{

@@ -5,7 +5,7 @@ require_once './class.php';
 
 $produto = new produto;
 $result = $produto->estoque();
-$produtos = $result->fetch_all(MYSQLI_ASSOC); // Certificando que a variável $produtos é preenchida corretamente
+$produtos = $result->fetch_all(MYSQLI_ASSOC);
 $totalProdutos = $result->num_rows;
 $produtosPorPagina = 12;
 $totalPaginas = max(1, ceil($totalProdutos / $produtosPorPagina));
@@ -26,6 +26,11 @@ if (isset($_SESSION['username'])) {
     <link href="./style/select-personalizado.scss" rel="stylesheet">
     <link href="./style/modal-cad-style.scss" rel="stylesheet">
     <link href="./side-bar/style-responsive.scss" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="icon" href="./assets/favicon/favicon.ico">
+    <link rel="manifest" href="./assets/favicon/site.webmanifest">
     <title>Estoque</title>
 </head>
 <body>
@@ -75,7 +80,7 @@ if (isset($_SESSION['username'])) {
                                         </td>
                                         <td><?= htmlspecialchars($linha['idfornecedor']) ?></td>  
                                         <td>
-                                            <a href="#" onclick="return confirmarExclusao('<?= htmlspecialchars($linha['nomeproduto']) ?>', './apagar_produto.php?idproduto=<?= htmlspecialchars($linha['idproduto']) ?>&nome=<?= htmlspecialchars($linha['nomeproduto']) ?>&redirect=lista_de_compra')">
+                                            <a href="./apagar_produto.php?idproduto=<?= htmlspecialchars($linha['idproduto']) ?>&nome=<?= htmlspecialchars($linha['nomeproduto']) ?>&redirect=lista_de_compra">
                                                 <i class="bi bi-trash3"></i>
                                             </a>
                                         </td>

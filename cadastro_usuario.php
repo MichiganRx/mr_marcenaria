@@ -18,6 +18,11 @@ if (isset($_SESSION['username'])) {
     <link href="./style/cadastro-style.scss" rel="stylesheet">
     <link href="./style/modal-cad-style.scss" rel="stylesheet">
     <link href="./style/select-personalizado.scss" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="icon" href="./assets/favicon/favicon.ico">
+    <link rel="manifest" href="./assets/favicon/site.webmanifest">
     <title>Cadastrar Novo Usuário</title>
 </head>
 <body>
@@ -57,8 +62,8 @@ if (isset($_SESSION['username'])) {
                         </div>
                     </div>
                     <input type="hidden" name="idcargo" id="cargo">
-                    <div id="error-message-user" class="caixa-de-erro" style="display:none;">Preencha todos os campos!</div>
-                    <div id="error-message-senha" class="caixa-de-erro" style="display:none;">Senhas não coincidem!</div>
+                    <div id="error-message-user" class="caixa-de-erro" style="display:none;"><span>Preencha todos os campos!</span></div>
+                    <div id="error-message-senha" class="caixa-de-erro" style="display:none;"><span>Senhas não coincidem!</span></div>
                 </div>
                 <button name="salva_funcionario" class="button-save">Salvar</button>
             </form>
