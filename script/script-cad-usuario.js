@@ -41,7 +41,7 @@ window.onload = function() {
         if (cargoNome) {
             cargoErrorMessage.style.display = 'none';
         } else {
-            cargoErrorMessage.style.display = 'block';
+            cargoErrorMessage.style.display = 'flex';
         }
     };
 
@@ -52,7 +52,7 @@ window.onload = function() {
 
         if (!cargoNome) {
             event.preventDefault();
-            cargoErrorMessage.style.display = 'block';
+            cargoErrorMessage.style.display = 'flex';
         } else {
             document.getElementById('cadastroCargo').style.display = 'none';
             const card = new Card('Sucesso!', 'Cargo cadastrado.');
@@ -89,13 +89,13 @@ document.addEventListener("DOMContentLoaded", function() {
         var cargo = document.getElementById("cargo").value;
 
         if (nome === "" || login === "" || senha === "" || senha_confirma === "" || cargo === "") {
-            document.getElementById("error-message-user").style.display = "block";
+            document.getElementById("error-message-user").style.display = "flex";
             event.preventDefault();
             return;
         }
 
         if (senha !== senha_confirma) {
-            document.getElementById("error-message-senha").style.display = "block";
+            document.getElementById("error-message-senha").style.display = "flex";
             event.preventDefault();
             return;
         }else{

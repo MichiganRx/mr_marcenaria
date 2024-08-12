@@ -35,6 +35,11 @@ if (isset($_SESSION['username'])) {
     <link href="./style/select-personalizado.scss" rel="stylesheet">
     <link href="./style/modal-cad-style.scss" rel="stylesheet">
     <link href="./side-bar/style-responsive.scss" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="icon" href="./assets/favicon/favicon.ico">
+    <link rel="manifest" href="./assets/favicon/site.webmanifest">
     <title>Home</title>
 </head>
 <body>
@@ -170,8 +175,8 @@ if (isset($_SESSION['username'])) {
                     <button type="button" id="btnFecharCadastro"><img src="./assets/img/fechar.png" alt=""></button>
                 </div>
                 <input type="text" name="produto" id="nome_produto" placeholder="Nome do Produto">
-                <input type="text" name="saldo" id="saldo" placeholder="Saldo">
-                <input type="text" name="minimo" id="minimo" placeholder="Quantidade mínima">
+                <input type="number" name="saldo" id="saldo" placeholder="Saldo">
+                <input type="number" name="minimo" id="minimo" placeholder="Quantidade mínima">
                 <div class="custom-select" id="fornecedor-select">
                     <div class="select-selected select-2">Selecione o Fornecedor<i class="bi bi-caret-down-fill"></i></div>
                     <div class="select-items select-hide content-2">
@@ -210,8 +215,8 @@ if (isset($_SESSION['username'])) {
                 </div>
                 <input type="hidden" name="idproduto" id="edit_idproduto">
                 <input type="text" name="nomeproduto" id="edit_nome_produto" placeholder="Nome do Produto">
-                <input type="text" name="saldo" id="edit_saldo" placeholder="Saldo">
-                <input type="text" name="minimo" id="edit_minimo" placeholder="Quantidade mínima">
+                <input type="number" name="saldo" id="edit_saldo" placeholder="Saldo">
+                <input type="number" name="minimo" id="edit_minimo" placeholder="Quantidade mínima">
                 <div class="custom-select" id="edit_fornecedor-select">
                     <div class="select-selected select-2" placeholder="">Selecione o Fornecedor<i class="bi bi-caret-down-fill"></i></div>
                     <div class="select-items select-hide content-2">

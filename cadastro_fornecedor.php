@@ -18,6 +18,11 @@ if (isset($_SESSION['username'])) {
     <link href="./style/cadastro-style.scss" rel="stylesheet">
     <link href="./style/modal-cad-style.scss" rel="stylesheet">
     <link href="./style/select-personalizado.scss" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
+    <link rel="icon" href="./assets/favicon/favicon.ico">
+    <link rel="manifest" href="./assets/favicon/site.webmanifest">
     <title>Cadastrar Novo Fornedor</title>
 </head>
 <body>
@@ -36,7 +41,7 @@ if (isset($_SESSION['username'])) {
                         <button id="btnAdicionarTipo" type="button"><img src="./assets/img/adicionar.png" alt="">Adicionar Tipo</button>
                     </div>
                     <input type="text" name="nome_forn" id="nome_forn" placeholder="Nome do Fornecedor">
-                    <input type="tel" name="telefone" id="telefone" placeholder="Telefone">
+                    <input type="tel" maxlength="15" onkeyup="handlePhone(event)" name="telefone" id="telefone" placeholder="Telefone"/>
                     <div class="custom-select" id="tipo-select">
                         <div class="select-selected" required>Tipo de Fornecedor<i class="bi bi-caret-down-fill"></i></div>
                         <div class="select-items select-hide">
@@ -50,7 +55,7 @@ if (isset($_SESSION['username'])) {
                         </div>
                     </div>
                     <input type="hidden" name="tipo_forn" id="tipo_forn">
-                    <div id="error-message-user" class="caixa-de-erro" style="display:none;">Preencha todos os campos!</div>
+                    <div id="error-message-user" class="caixa-de-erro" style="display:none;"><span>Preencha todos os campos!</span></div>
                 </div>
                 <button name="salva_fornecedor" class="button-save">Salvar</button>
             </form>
@@ -63,13 +68,28 @@ if (isset($_SESSION['username'])) {
                     <button type="button" id="btnFecharCadastro"><img src="./assets/img/fechar.png" alt=""></button>
                 </div>
                 <input type="text" name="tipo" id="tipo_nome" placeholder="Tipo de Fornecedor">
-                <div id="error-message" class="caixa-de-erro" style="display:none;">Preencha todos os campos!</div>
+                <div id="error-message" class="caixa-de-erro" style="display:none;"><span>Preencha todos os campos!</span></div>
                 <button type="submit" name="salva_tipo">Cadastrar</button>
             </form>
         </div>
     </main>
     <script src="./script/script-cad-fornecedor.js"></script>
     <script src="./script/alert.js"></script>
+    <script>
+        const handlePhone = (event) => {
+        let input = event.target
+        input.value = phoneMask(input.value)
+      }
+      
+      const phoneMask = (value) => {
+        if (!value) return ""
+        value = value.replace(/\D/g,'')
+        value = value.replace(/(\d{2})(\d)/,"($1) $2")
+        value = value.replace(/(\d)(\d{4})$/,"$1-$2")
+        return value
+      }
+    </script>
+
 </body>
 </html>
 <?php
