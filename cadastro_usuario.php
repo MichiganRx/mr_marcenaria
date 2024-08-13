@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once './banco.php';
-require_once './class.php';
+require_once 'banco.php';
+require_once 'class.php';
 
 $db = new banco;
 if (isset($_SESSION['username'])) {
@@ -12,40 +12,40 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./side-bar/style.scss" rel="stylesheet">
-    <link href="./side-bar/style-responsive.scss" rel="stylesheet">
-    <link href="./style/global.scss" rel="stylesheet">
-    <link href="./style/cadastro-style.scss" rel="stylesheet">
-    <link href="./style/modal-cad-style.scss" rel="stylesheet">
-    <link href="./style/select-personalizado.scss" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
-    <link rel="icon" href="./assets/favicon/favicon.ico">
-    <link rel="manifest" href="./assets/favicon/site.webmanifest">
+    <link href="style/menu-style.scss" rel="stylesheet">
+    <link href="style/menu-style-responsive.scss" rel="stylesheet">
+    <link href="style/global.scss" rel="stylesheet">
+    <link href="style/cadastro-style.scss" rel="stylesheet">
+    <link href="style/modal-cad-style.scss" rel="stylesheet">
+    <link href="style/select-personalizado.scss" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="icon" href="assets/favicon/favicon.ico">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
     <title>Cadastrar Novo Usuário</title>
 </head>
 <body>
     <main class="container">
         <header>
             <div class="navbar">
-                <?php require_once './side-bar/menu-responsive.php'; ?>
+                <?php require_once 'side-bar/menu-responsive.php'; ?>
             </div>
         </header>
-        <?php require_once './side-bar/menu.php'; ?>
+        <?php require_once 'side-bar/menu.php'; ?>
         <div class="container_form">
-            <form action="./cad_usuario.php" method="POST" id="cadUsuario">
+            <form action="cad_usuario.php" method="POST" id="cadUsuario">
                 <div class="container-content">
                     <div class="title-table">
                         <h2>Cadastrar Usuário</h2>
-                        <button id="btnAdicionarCargo" type="button"><img src="./assets/img/adicionar.png" alt="">Adicionar Cargo</button>
+                        <button id="btnAdicionarCargo" type="button"><img src="assets/img/adicionar.png" alt="">Adicionar Cargo</button>
                     </div>
                     <input type="text" name="nome" id="nome_usuario" placeholder="Nome do Usuário" required>
                     <input type="email" name="login" id="login" placeholder="Login" required>
                     <div class="container-input">
                         <input type="password" name="senha" id="senha" placeholder="Senha" required>
                         <button type="button" id="togglePassword">
-                            <img src="./assets/img/olho-aberto.png" alt="" id="olho-1">
+                            <img src="assets/img/olho-aberto.png" alt="" id="olho-1">
                         </button>
                     </div>
                     <input type="password" name="senha_confirma" id="confirmacao-senha" placeholder="Confirmar Senha">
@@ -70,10 +70,10 @@ if (isset($_SESSION['username'])) {
         </div>
         <div id="app"></div>
         <div class="modal-cad" id="cadastroCargo">
-            <form id="cadastroCargoForm" action="./cad_cargo.php" method="POST">
+            <form id="cadastroCargoForm" action="cad_cargo.php" method="POST">
                 <div class="titulo-add">
                     <h3>Cadastrar Cargo</h3>
-                    <button type="button" id="btnFecharCadastro"><img src="./assets/img/fechar.png" alt=""></button>
+                    <button type="button" id="btnFecharCadastro"><img src="assets/img/fechar.png" alt=""></button>
                 </div>
                 <input type="text" name="cargo" id="cargo_nome" placeholder="Nome do Cargo">
                 <div id="error-message" class="caixa-de-erro" style="display:none;">Preencha todos os campos!</div>
@@ -81,9 +81,9 @@ if (isset($_SESSION['username'])) {
             </form>
         </div>
     </main>
-    <script src="./script/script-cad-usuario.js"></script>
-    <script src="./script/script-password.js"></script>
-    <script src="./script/alert.js"></script>
+    <script src="script/script-cad-usuario.js"></script>
+    <script src="script/script-password.js"></script>
+    <script src="script/alert.js"></script>
 </body>
 </html>
 <?php

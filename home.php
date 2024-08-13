@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once './banco.php';
-require_once './class.php';
+require_once 'banco.php';
+require_once 'class.php';
 
 if (isset($_SESSION['username'])) {
     if (isset($_POST['buscar']) && !empty($_POST['buscar'])) {
@@ -28,34 +28,34 @@ if (isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./side-bar/style.scss" rel="stylesheet">
-    <link href="./style/global.scss" rel="stylesheet">
-    <link href="./style/table-style.scss" rel="stylesheet">
-    <link href="./style/table-responsive.scss" rel="stylesheet">
-    <link href="./style/select-personalizado.scss" rel="stylesheet">
-    <link href="./style/modal-cad-style.scss" rel="stylesheet">
-    <link href="./side-bar/style-responsive.scss" rel="stylesheet">
-    <link rel="apple-touch-icon" sizes="180x180" href="./assets/favicon/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/favicon-16x16.png">
-    <link rel="icon" href="./assets/favicon/favicon.ico">
-    <link rel="manifest" href="./assets/favicon/site.webmanifest">
+    <link href="style/menu-style.scss" rel="stylesheet">
+    <link href="style/menu-style-responsive.scss" rel="stylesheet">
+    <link href="style/global.scss" rel="stylesheet">
+    <link href="style/table-style.scss" rel="stylesheet">
+    <link href="style/table-responsive.scss" rel="stylesheet">
+    <link href="style/select-personalizado.scss" rel="stylesheet">
+    <link href="style/modal-cad-style.scss" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/favicon-16x16.png">
+    <link rel="icon" href="assets/favicon/favicon.ico">
+    <link rel="manifest" href="assets/favicon/site.webmanifest">
     <title>Home</title>
 </head>
 <body>
     <main class="container">
         <header>
             <div class="navbar">
-                <?php require_once './side-bar/menu-responsive.php'; ?>
+                <?php require_once 'side-bar/menu-responsive.php'; ?>
             </div>
         </header>
-        <?php require_once './side-bar/menu.php'; ?>
+        <?php require_once 'side-bar/menu.php'; ?>
         <div class="table">
             <div class="content-table">
                 <div class="title-table">
                     <div class="title-page">
                         <h2>Produtos em Estoque</h2>
-                        <button id="btnAdicionarProduto"><img src="./assets/img/adicionar.png" alt="">Adicionar Produto</button>
+                        <button id="btnAdicionarProduto"><img src="assets/img/adicionar.png" alt="">Adicionar Produto</button>
                     </div>
                     <div class="container-search">
                         <form method="POST" action="">
@@ -85,17 +85,17 @@ if (isset($_SESSION['username'])) {
                                     <td>
                                         <?php
                                             if ($linha['saldo'] == 0) {
-                                                echo '<img src="./assets/img/fora-estoque.png" alt="Fora do Estoque">';
+                                                echo '<img src="assets/img/fora-estoque.png" alt="Fora do Estoque">';
                                             } elseif ($linha['saldo'] < $linha['quantidade_minima']) {
-                                                echo '<img src="./assets/img/alerta.png" alt="Em Alerta">';
+                                                echo '<img src="assets/img/alerta.png" alt="Em Alerta">';
                                             } else {
-                                                echo '<img src="./assets/img/ok.png" alt="Em Estoque">';
+                                                echo '<img src="assets/img/ok.png" alt="Em Estoque">';
                                             }
                                         ?>
                                     </td>
                                     <td><?= isset($linha['idfornecedor']) ? htmlspecialchars($linha['idfornecedor']) : 'N/A' ?></td>
                                     <td>
-                                        <a href="#" onclick="return confirmarExclusao('<?= htmlspecialchars($linha['nomeproduto']) ?>', './apagar_produto.php?idproduto=<?= htmlspecialchars($linha['idproduto']) ?>&nome=<?= htmlspecialchars($linha['nomeproduto']) ?>&redirect=home')">
+                                        <a href="#" onclick="return confirmarExclusao('<?= htmlspecialchars($linha['nomeproduto']) ?>', 'apagar_produto.php?idproduto=<?= htmlspecialchars($linha['idproduto']) ?>&nome=<?= htmlspecialchars($linha['nomeproduto']) ?>&redirect=home')">
                                             <i class="bi bi-trash3"></i>
                                         </a>
                                         <button type="button" class="btnEdita" 
@@ -136,7 +136,7 @@ if (isset($_SESSION['username'])) {
                                         data-estoque="<?= htmlspecialchars($linha['idestoque']) ?>">
                                         <i class="bi bi-pencil-square"></i>
                                     </button>
-                                    <a href="#" onclick="return confirmarExclusao('<?= htmlspecialchars($linha['nomeproduto']) ?>', './apagar_produto.php?idproduto=<?= htmlspecialchars($linha['idproduto']) ?>&nome=<?= htmlspecialchars($linha['nomeproduto']) ?>&redirect=home')">
+                                    <a href="#" onclick="return confirmarExclusao('<?= htmlspecialchars($linha['nomeproduto']) ?>', 'apagar_produto.php?idproduto=<?= htmlspecialchars($linha['idproduto']) ?>&nome=<?= htmlspecialchars($linha['nomeproduto']) ?>&redirect=home')">
                                         <i class="bi bi-trash3"></i>
                                     </a>
                                 </div>
@@ -149,11 +149,11 @@ if (isset($_SESSION['username'])) {
                                 <div>
                                     <?php
                                         if ($linha['saldo'] == 0) {
-                                            echo '<img src="./assets/img/fora-estoque.png" alt="Fora do Estoque">';
+                                            echo '<img src="assets/img/fora-estoque.png" alt="Fora do Estoque">';
                                         } elseif ($linha['saldo'] < $linha['quantidade_minima']) {
-                                            echo '<img src="./assets/img/alerta.png" alt="Em Alerta">';
+                                            echo '<img src="assets/img/alerta.png" alt="Em Alerta">';
                                         } else {
-                                            echo '<img src="./assets/img/ok.png" alt="Em Estoque">';
+                                            echo '<img src="assets/img/ok.png" alt="Em Estoque">';
                                         }
                                     ?>
                                 </div>
@@ -169,10 +169,10 @@ if (isset($_SESSION['username'])) {
             </div>
         </div>
         <div class="modal-cad" id="cadastroProduto">
-            <form id="cadastroProdutoForm" action="./cad_produto.php" method="POST" enctype="multipart/form-data">
+            <form id="cadastroProdutoForm" action="cad_produto.php" method="POST" enctype="multipart/form-data">
                 <div class="titulo-add">
                     <h3>Cadastrar Produto</h3>
-                    <button type="button" id="btnFecharCadastro"><img src="./assets/img/fechar.png" alt=""></button>
+                    <button type="button" id="btnFecharCadastro"><img src="assets/img/fechar.png" alt=""></button>
                 </div>
                 <input type="text" name="produto" id="nome_produto" placeholder="Nome do Produto">
                 <input type="number" name="saldo" id="saldo" placeholder="Saldo">
@@ -211,7 +211,7 @@ if (isset($_SESSION['username'])) {
             <form action="./produto_edita.php" method="POST" enctype="multipart/form-data" id="editarProdutoForm">
                 <div class="titulo-add">
                     <h3>Editar Produto</h3>
-                    <button type="button" id="btnFecharEdicao"><img src="./assets/img/fechar.png" alt=""></button>
+                    <button type="button" id="btnFecharEdicao"><img src="assets/img/fechar.png" alt=""></button>
                 </div>
                 <input type="hidden" name="idproduto" id="edit_idproduto">
                 <input type="text" name="nomeproduto" id="edit_nome_produto" placeholder="Nome do Produto">
@@ -289,13 +289,13 @@ if (isset($_SESSION['username'])) {
             changePage(1);
         });
     </script>
-    <script src="./script/script-home.js"></script>
-    <script src="./script/alert.js"></script>
-    <script src="./script/alert-delet.js"></script>
+    <script src="script/script-home.js"></script>
+    <script src="script/alert.js"></script>
+    <script src="script/alert-delet.js"></script>
 </body>
 </html>
 <?php
 } else {
-    header("Location: ./index.php");
+    header("Location: index.php");
 }
 ?>

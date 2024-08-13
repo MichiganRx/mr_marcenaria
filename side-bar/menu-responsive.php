@@ -10,34 +10,34 @@
     <i class="bi bi-list" id="toggleBtn"></i>
     <div class="bg-menu" id="menu_container">
         <div class="menu" id="menu">
-            <img src="./assets/img/logo.png" alt="" class="logo">
+            <img src="assets/img/logo.png" alt="" class="logo">
             <ul>
                 <li class="item-menu" id="home-mobile">
-                    <a href="./home.php">
+                    <a href="home.php">
                         <span class="icon"><i class="bi bi-house-door"></i></span>
                         <span class="txt-link">Home</span>
                     </a>
                 </li>
                 <li class="item-menu" id="lista-de-compra-mobile">
-                    <a href="./lista_de_compra.php" >
+                    <a href="lista_de_compra.php" >
                         <span class="icon"><i class="bi bi-cart-check"></i></span>
                         <span class="txt-link">Lista de Compra</span>
                     </a>
                 </li>
                 <li class="item-menu" id="add-usuario-mobile">
-                    <a href="./cadastro_usuario.php">
+                    <a href="cadastro_usuario.php">
                         <span class="icon"><i class="bi bi-person-plus"></i></span>
                         <span class="txt-link">+ Usuario</span>
                     </a>
                 </li>
                 <li class="item-menu" id="add-fornecedor-mobile">
-                    <a href="./cadastro_fornecedor.php">
+                    <a href="cadastro_fornecedor.php">
                         <span class="icon"><i class="bi bi-bag-check"></i></span>
                         <span class="txt-link">+ Fornecedor</span>
                     </a>
                 </li>
                 <li class="item-menu" id="sair">
-                    <a href="./sair.php">
+                    <a href="sair.php">
                         <span class="icon"><i class="bi bi-box-arrow-in-left"></i></span>
                         <span class="txt-link">Sair</span>
                     </a>
